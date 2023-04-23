@@ -1,0 +1,94 @@
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.filmsList {
+  justify-content: center;
+}
+
+.searchInput {
+  margin-bottom: 10px;
+}
+
+.filmsList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 454px));
+  column-gap: 36px;
+  row-gap: 20px;
+}
+
+.cardWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 8px 10px;
+  height: 100%;
+}
+
+.posterRoot {
+  position: absolute;
+  top: 6px;
+  left: 10px;
+  width: 60px;
+  height: 91px;
+}
+
+.poster {
+  border-radius: 4px;
+  /* border-radius: 8px 0 0 8px; */
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  min-height: 95px;
+  margin-left: 83px;
+}
+
+.cardBody {
+  display: flex;
+  min-height: 130px;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.rating {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+@media screen and (min-width: 500px) {
+  .cardWrapper {
+    height: 281px;
+    margin-left: 183px;
+  }
+  .posterRoot {
+    top: 0;
+    left: 0;
+    width: 183px;
+    height: 281px;
+    overflow: hidden;
+  }
+  .poster {
+    height: 281px;
+  }
+  .cardInfo {
+    margin-left: 0;
+  }
+  .rate {
+    font-size: 17px;
+  }
+}
