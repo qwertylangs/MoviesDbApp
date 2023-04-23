@@ -95,7 +95,6 @@ export const useMovieDb = () => {
         })
         if (responce.status === 200) {
           const data: IFilmsResponce = responce.data
-
           localFilms = [...localFilms, ...extractLocalFilms(data.results)]
 
           if (data.total_pages > page) {
