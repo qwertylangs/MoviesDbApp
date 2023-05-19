@@ -20,7 +20,7 @@ export const useMovieDb = () => {
 
   const [log, setLog] = useState<string>("")
 
-  const sessionId = localStorage.getItem("sessionId")
+  let sessionId = localStorage.getItem("sessionId")
 
   const getMovies = useCallback(async (query = "return", page = 1) => {
     query = query || "return"
@@ -66,6 +66,7 @@ export const useMovieDb = () => {
           if (data?.success) {
             localStorage.setItem("sessionId", data.guest_session_id)
             localStorage.setItem("sessionExpiresAt", data.expires_at.replace(/-/g, "/"))
+            sessionId = data.guest_session_id
           }
         } else {
           setErrors([...errors, `Error: ${responce.status} ${responce.statusText}. Cannot create session`])

@@ -16,7 +16,7 @@ const App = () => {
   const [query, setQuery] = useState<string>("")
 
   const [ratedFilms, setRatedFilms] = useState<ILocalFilm[] | []>([])
-  const [shouldUpdateRatedFilms, setShouldUpdateRatedFilms] = useState<boolean>(true)
+  const [shouldUpdateRatedFilms, setShouldUpdateRatedFilms] = useState<boolean>(false)
 
   const [genresList, setGenresList] = useState<IGenre[]>([])
 
@@ -33,25 +33,24 @@ const App = () => {
   }
 
   useEffect(() => {
-    setloading(true)
-    createSession().then(() => {
-      if (shouldUpdateRatedFilms) {
-        getRatedMovies().then((ratedFilmsRes) => {
-          setRatedFilms(ratedFilmsRes)
-          setShouldUpdateRatedFilms(false)
-          updateFilms(ratedFilmsRes)
-        })
-      } else {
-        updateFilms(ratedFilms)
-      }
-    })
-  }, [page, query, shouldUpdateRatedFilms])
-
-  useEffect(() => {
+    createSession()
     getGenres().then((genres) => {
       if (genres) setGenresList(genres)
     })
   }, [])
+
+  useEffect(() => {
+    setloading(true)
+    if (shouldUpdateRatedFilms) {
+      getRatedMovies().then((ratedFilmsRes) => {
+        setRatedFilms(ratedFilmsRes)
+        setShouldUpdateRatedFilms(false)
+        updateFilms(ratedFilmsRes)
+      })
+    } else {
+      updateFilms(ratedFilms)
+    }
+  }, [page, query, shouldUpdateRatedFilms])
 
   const handleTabChange = () => {
     setShouldUpdateRatedFilms(true)
